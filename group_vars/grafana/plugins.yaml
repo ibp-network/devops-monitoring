@@ -1,0 +1,3 @@
+# grafana_plugins:
+#   - grafana-clock-panel
+#   - grafana-piechart-panel

@@ -1,0 +1,37 @@
+grafana_url: "https://monitoring.ibp.network"
+grafana_address: 127.0.0.1
+grafana_port: 3000
+
+grafana_users:
+  auto_assign_org_role: Viewer
+  allow_sign_up: false
+
+grafana_database:
+  type: postgres
+  host: "127.0.0.1"
+  user: grafanauser
+  password: "{{ grafana_db_pw }}"
+  name: grafana
+  ssl_mode: require
+
+grafana_datasources:
+  - name: prometheus
+    type: prometheus
+    access: proxy
+    url: 'http://{{ prometheus_web_listen_address }}'
+    basicAuth: false
+
+grafana_auth:
+  github:
+    name: IBP Github
+    enabled: true
+    client_id: "{{ grafana_oauth_id }}"
+    client_secret: "{{ grafana_oauth_secret }}"
+    scopes: user:email,read:org
+    auth_url: https://github.com/login/oauth/authorize
+    token_url: https://github.com/login/oauth/access_token
+    api_url: https://api.github.com/user
+    allow_sign_up: true
+    auto_login: false
+    allowed_organizations: ["ibp-network"]
+    role_attribute_path: 'Viewer'

@@ -1,0 +1,14 @@
+- hosts: prometheus
+  roles:
+    - prometheus.prometheus.prometheus
+  tags:
+    - prometheus_configure
+    - prometheus_install
+    - prometheus_run
+
+- name: install alertmanager
+  hosts: alertmanager
+  roles:
+    - prometheus.prometheus.alertmanager
+  tags:
+    - alertmanager

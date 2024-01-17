@@ -1,0 +1,13 @@
+prometheus_targets:
+  members:
+    - targets:
+      - ibp-monitor.amforc.com:9090         # Amforc
+      - ibp-prometheus.turboflakes.io:9095  # Turboflakes
+      - 195.144.22.130:9090                 # Metaspan
+      - 192.96.202.185:59090                # Stakeplus
+      - 77.92.101.227:19300                 # Helikon
+      - 138.59.133.242:9090                 # Gatotech
+      - ibp-metrics-ng.dwellir.com          # Dwellir
+      - ibp-metrics.rotko.net               # Rotko
+      - ibp-prometheus.radiumblock.co       # Radiumblock
+      - 202.37.148.106:19090                # Polkadotters

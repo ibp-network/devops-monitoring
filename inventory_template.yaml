@@ -1,0 +1,18 @@
+all:
+  vars:
+    ansible_user: 
+    ansible_python_interpreter: /usr/bin/python3
+  children:
+    prometheus:
+      hosts:
+        ibpmon-002:
+          ansible_host: 
+    alertmanager:
+      hosts:
+        ibpmon-002:
+    nginx:
+      hosts:
+        ibpmon-002:
+    grafana:
+      hosts:
+        ibpmon-002:
