@@ -5,7 +5,7 @@ prometheus_targets:
       - ibp-prometheus.turboflakes.io:9095
       - ibp-metrics.metaspan.io
       - 192.96.202.185:59090                # Stakeplus
-      - 77.92.101.227:19300                 # Helikon
+      - ibp-metrics.helikon.io:19300
       - ibp-metrics.gatotech.network
       - ibp-metrics-ng.dwellir.com
       - ibp-metrics.rotko.net
