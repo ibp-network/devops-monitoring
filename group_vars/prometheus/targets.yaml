@@ -10,4 +10,4 @@ prometheus_targets:
       - ibp-metrics-ng.dwellir.com
       - ibp-metrics.rotko.net
       - ibp-prometheus.radiumblock.co
-      - 202.37.148.106:19090                # Polkadotters
+      - ibp-metrics.polkadotters.com
