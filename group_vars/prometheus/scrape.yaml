@@ -17,7 +17,12 @@ prometheus_scrape_configs:
     scheme: https
     params:
       match[]:
-        - '{job="substrate"}'
+        - '{__name__=~"substrate.*"}'
     file_sd_configs:
       - files:
         - "{{ prometheus_config_dir }}/file_sd/members.yml"
+    relabel_configs:
+    - source_labels: [__address__]
+      regex: '^.*(dwellir\.com)$'
+      target_label: __metrics_path__
+      replacement: "/{{ dwellir_api_key }}/federate"

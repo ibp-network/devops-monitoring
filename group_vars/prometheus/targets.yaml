@@ -4,10 +4,10 @@ prometheus_targets:
       - ibp-monitor.amforc.com:9090
       - ibp-prometheus.turboflakes.io:9095
       - ibp-metrics.metaspan.io
-      - 192.96.202.185:59090                # Stakeplus
+      - prometheus.stake.plus:9090
       - ibp-metrics.helikon.io:19300
       - ibp-metrics.gatotech.network
       - ibp-metrics-ng.dwellir.com
       - ibp-metrics.rotko.net
       - ibp-prometheus.radiumblock.co
-      - 202.37.148.106:19090                # Polkadotters
+      - ibp-metrics.polkadotters.com
