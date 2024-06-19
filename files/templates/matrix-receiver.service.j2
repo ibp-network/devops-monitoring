@@ -1,0 +1,38 @@
+{{ ansible_managed | comment }}
+[Unit]
+Description=Matrix Receiver
+Wants=syslog.target network-online.target
+After=network-online.target
+
+[Service]
+User={{ matrix_rcv_user }}
+Group={{ matrix_rcv_group }}
+Type=simple
+ExecStart=/usr/local/bin/matrix-alertmanager-receiver \
+    --config-path=/etc/matrix-receiver/config.yaml
+
+Restart=always
+TimeoutStopSec=20
+LimitNOFILE=10000
+CapabilityBoundingSet=
+LockPersonality=true
+NoNewPrivileges=true
+PrivateDevices=true
+PrivateMounts=true
+PrivateTmp=true
+PrivateUsers=true
+ProtectClock=true
+ProtectControlGroups=true
+ProtectHostname=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectSystem=strict
+RemoveIPC=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
+RestrictSUIDSGID=true
+SystemCallArchitectures=native
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target

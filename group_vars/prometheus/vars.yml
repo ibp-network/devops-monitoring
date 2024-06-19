@@ -1,0 +1,19 @@
+prometheus_version: 2.53.0
+
+prometheus_port: 9090
+prometheus_web_listen_address: "127.0.0.1:{{ prometheus_port }}"
+
+prometheus_alertmanager_config:
+  - static_configs:
+      - targets:
+          - 127.0.0.1:9093
+
+prometheus_global:
+  scrape_interval: 15s
+  scrape_timeout: 15s
+  evaluation_interval: 15s
+
+prometheus_storage_retention: "365d"
+
+prometheus_alert_rules_files:
+  - files/rules/*.rules

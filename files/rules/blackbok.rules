@@ -1,0 +1,50 @@
+groups:
+- name: blackbox.rules
+  rules:
+    - alert: BlackboxProbeFailed
+      expr: probe_success == 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        message: Blackbox probe failed (instance {{ $labels.instance }} with {{ $labels.probe_url }})
+
+    - alert: BlackboxProbeHttpFailure
+      expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        message: Blackbox probe HTTP failure (instance {{ $labels.instance }} with {{ $labels.probe_url }})
+
+    - alert: BlackboxConfigurationReloadFailure
+      expr: blackbox_exporter_config_last_reload_successful != 1
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        message: Blackbox configuration reload failure (instance {{ $labels.instance }})
+
+    - alert: BlackboxSslCertificateWillExpireSoon
+      expr: 3 <= round((last_over_time(probe_ssl_earliest_cert_expiry[10m]) - time()) / 86400, 0.1) < 20
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        message: SSL certificate will expire <20 days (instance {{ $labels.instance }} {{ $labels.probe_url }})
+
+    - alert: BlackboxSslCertificateWillExpire3Days
+      expr: 0 <= round((last_over_time(probe_ssl_earliest_cert_expiry[10m]) - time()) / 86400, 0.1) < 3
+      for: 0m
+      labels:
+        severity: critical
+      annotations:
+        message: SSL certificate will expire <3 days (instance {{ $labels.instance }} {{ $labels.probe_url }})
+
+    - alert: BlackboxSslCertificateExpired
+      expr: round((last_over_time(probe_ssl_earliest_cert_expiry[10m]) - time()) / 86400, 0.1) < 0
+      for: 0m
+      labels:
+        severity: critical
+      annotations:
+        message: SSL certificate has expired (instance {{ $labels.instance }} {{ $labels.probe_url }})

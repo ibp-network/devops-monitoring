@@ -1,0 +1,48 @@
+groups:
+- name: alertmanager.rules
+  rules:
+
+    - alert: PrometheusAlertmanagerJobMissing
+      expr: 'absent(up{job="alertmanager"})'
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: Prometheus AlertManager job missing (instance {{ $labels.instance }})
+        description: "A Prometheus AlertManager job has disappeared\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  
+    - alert: PrometheusAlertmanagerConfigNotSynced
+      annotations:
+        summary: Prometheus AlertManager config not synced (instance {{ $labels.instance }})
+        description: "Configurations of AlertManager cluster instances are out of sync\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+      expr: count(count_values("config_hash", alertmanager_config_hash)) > 1
+      for: 5m
+      labels:
+        severity: critical
+  
+    - alert: AlertmanagerFailedReload
+      expr: alertmanager_config_last_reload_successful != 1
+      for: 0m
+      labels:
+        severity: warning
+      annotations:
+        summary: Prometheus AlertManager configuration reload failure (instance {{ $labels.instance }})
+        description: "AlertManager configuration reload error\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  
+    - alert: PrometheusRuleEvaluationFailures
+      expr: increase(prometheus_rule_evaluation_failures_total[3m]) > 0
+      for: 0m
+      labels:
+        severity: critical
+      annotations:
+        summary: Prometheus rule evaluation failures (instance {{ $labels.instance }})
+        description: "Prometheus encountered {{ $value }} rule evaluation failures, leading to potentially ignored alerts.\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+
+    - alert: PrometheusAlertmanagerNotificationFailing
+      expr: rate(alertmanager_notifications_failed_total[1m]) > 0
+      for: 0m
+      labels:
+        severity: critical
+      annotations:
+        summary: Prometheus AlertManager notification failing (instance {{ $labels.instance }})
+        description: "Alertmanager is failing sending notifications\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"

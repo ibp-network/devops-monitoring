@@ -1,0 +1,24 @@
+- name: Pre-tasks
+  hosts: grafana
+  tasks:
+    - name: Install grafana
+      ansible.builtin.import_role:
+        name: grafana.grafana.grafana
+
+    - name: Merge Custom into Config
+      become: true
+      ansible.builtin.blockinfile:
+        path: /etc/grafana/grafana.ini
+        marker: "### {mark} ANSIBLE MANAGED CUSTOM BLOCK ###"
+        block: |
+          [auth.anonymous]
+          hide_version = true
+
+    - name: Restart grafana
+      become: true
+      ansible.builtin.systemd:
+        name: grafana-server
+        state: restarted
+        enabled: true
+      when:
+        - not ansible_check_mode

@@ -1,0 +1,94 @@
+---
+- name: Install matrix-alertmanager-receiver
+  hosts: alertmanager
+  become: true
+  tasks:
+    - name: Create Group
+      ansible.builtin.group:
+        name: "{{ matrix_rcv_group }}"
+        state: present
+        system: true
+
+    - name: Create User
+      ansible.builtin.user:
+        name: "{{ matrix_rcv_user }}"
+        group: "{{ matrix_rcv_group }}"
+        create_home: false
+        system: true
+        state: present
+        shell: "/usr/sbin/nologin"
+
+    - name: Get checksum
+      ansible.builtin.set_fact:
+        __matrix_checksums: "{{ lookup('url', matrix_rcv_checksum, wantlist=True) | list }}"
+
+    - name: Get checksum for architecture
+      ansible.builtin.set_fact:
+        __matrix_checksum: "{{ item.split(' ')[0] }}"
+      with_items: "{{ __matrix_checksums }}"
+      when: "(matrix_rcv_arch) in item"
+
+    - name: Download matrix receiver
+      become: false
+      ansible.builtin.get_url:
+        url: "{{ matrix_rcv_bin }}"
+        dest: "/tmp/matrix-alertmanager-receiver_{{ matrix_rcv_version }}.tar.gz"
+        checksum: "sha256:{{ __matrix_checksum }}"
+        mode: '0644'
+      register: __downloaded
+      until: __downloaded is succeeded
+      retries: 5
+      delay: 2
+      check_mode: false
+
+    - name: Unpack matrix receiver
+      become: false
+      ansible.builtin.unarchive:
+        src: "/tmp/matrix-alertmanager-receiver_{{ matrix_rcv_version }}.tar.gz"
+        dest: /tmp
+        creates: "/tmp/matrix-alertmanager-receiver_v{{ matrix_rcv_version }}"
+        remote_src: true
+      check_mode: false
+
+    - name: Copy binary to correct location
+      ansible.builtin.copy:
+        src: "/tmp/matrix-alertmanager-receiver_v{{ matrix_rcv_version }}"
+        dest: "/usr/local/bin/matrix-alertmanager-receiver"
+        mode: '0755'
+        owner: root
+        group: root
+        remote_src: true
+      when: not ansible_check_mode
+
+    - name: Create config directory
+      ansible.builtin.file:
+        path: "/etc/matrix-receiver/"
+        state: directory
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Copy systemd service
+      ansible.builtin.template:
+        src: files/templates/matrix-receiver.service.j2
+        dest: /etc/systemd/system/matrix-receiver.service
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Copy config service
+      ansible.builtin.template:
+        src: files/templates/matrix-receiver.yaml.j2
+        dest: /etc/matrix-receiver/config.yaml
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Restart matrix-receiver
+      ansible.builtin.systemd:
+        name: matrix-receiver
+        state: restarted
+        daemon_reload: true
+        enabled: true
+      when:
+        - not ansible_check_mode

@@ -1,0 +1,378 @@
+prometheus_targets:
+  syssub:
+    - targets:
+        - https://91.90.166.200/statemint
+        - https://91.90.166.200/asset-hub-polkadot
+        - https://91.90.166.200/bridgehub-polkadot
+        - https://91.90.166.200/collectives-polkadot
+        - https://91.90.166.200/statemine
+        - https://91.90.166.200/asset-hub-kusama
+        - https://91.90.166.200/bridgehub-kusama
+        - https://91.90.166.200/coretime-kusama
+        - https://91.90.166.200/encointer-kusama
+        - https://91.90.166.200/people-kusama
+        - https://91.90.166.200/westmint
+        - https://91.90.166.200/asset-hub-westend
+        - https://91.90.166.200/bridgehub-westend
+        - https://91.90.166.200/collectives-westend
+        - https://91.90.166.200/coretime-westend
+        - https://91.90.166.200/people-westend
+        - https://91.90.166.200/asset-hub-paseo
+      labels:
+        member: Amforc
+
+    - targets:
+        - https://188.93.234.134/statemint
+        - https://188.93.234.134/asset-hub-polkadot
+        - https://188.93.234.134/bridgehub-polkadot
+        - https://188.93.234.134/collectives-polkadot
+        - https://188.93.234.134/statemine
+        - https://188.93.234.134/asset-hub-kusama
+        - https://188.93.234.134/bridgehub-kusama
+        - https://188.93.234.134/coretime-kusama
+        - https://188.93.234.134/encointer-kusama
+        - https://188.93.234.134/people-kusama
+        - https://188.93.234.134/westmint
+        - https://188.93.234.134/asset-hub-westend
+        - https://188.93.234.134/bridgehub-westend
+        - https://188.93.234.134/collectives-westend
+        - https://188.93.234.134/coretime-westend
+        - https://188.93.234.134/people-westend
+        - https://188.93.234.134/asset-hub-paseo
+      labels:
+        member: turboflakes
+
+    - targets:
+        - https://195.144.22.130/statemint
+        - https://195.144.22.130/asset-hub-polkadot
+        - https://195.144.22.130/bridgehub-polkadot
+        - https://195.144.22.130/collectives-polkadot
+        - https://195.144.22.130/statemine
+        - https://195.144.22.130/asset-hub-kusama
+        - https://195.144.22.130/bridgehub-kusama
+        - https://195.144.22.130/coretime-kusama
+        - https://195.144.22.130/encointer-kusama
+        - https://195.144.22.130/people-kusama
+        - https://195.144.22.130/westmint
+        - https://195.144.22.130/asset-hub-westend
+        - https://195.144.22.130/bridgehub-westend
+        - https://195.144.22.130/collectives-westend
+        - https://195.144.22.130/coretime-westend
+        - https://195.144.22.130/people-westend
+        - https://195.144.22.130/asset-hub-paseo
+      labels:
+        member: metaspan
+
+    - targets:
+        - https://192.96.202.175/statemint
+        - https://192.96.202.175/asset-hub-polkadot
+        - https://192.96.202.175/bridgehub-polkadot
+        - https://192.96.202.175/collectives-polkadot
+        - https://192.96.202.175/statemine
+        - https://192.96.202.175/asset-hub-kusama
+        - https://192.96.202.175/bridgehub-kusama
+        - https://192.96.202.175/coretime-kusama
+        - https://192.96.202.175/encointer-kusama
+        - https://192.96.202.175/people-kusama
+        - https://192.96.202.175/westmint
+        - https://192.96.202.175/asset-hub-westend
+        - https://192.96.202.175/bridgehub-westend
+        - https://192.96.202.175/collectives-westend
+        - https://192.96.202.175/coretime-westend
+        - https://192.96.202.175/people-westend
+        - https://192.96.202.175/asset-hub-paseo
+      labels:
+        member: stakeplus
+
+    - targets:
+        - https://64.62.224.18/statemint
+        - https://64.62.224.18/asset-hub-polkadot
+        - https://64.62.224.18/bridgehub-polkadot
+        - https://64.62.224.18/collectives-polkadot
+        - https://64.62.224.18/statemine
+        - https://64.62.224.18/asset-hub-kusama
+        - https://64.62.224.18/bridgehub-kusama
+        - https://64.62.224.18/coretime-kusama
+        - https://64.62.224.18/encointer-kusama
+        - https://64.62.224.18/people-kusama
+        - https://64.62.224.18/westmint
+        - https://64.62.224.18/asset-hub-westend
+        - https://64.62.224.18/bridgehub-westend
+        - https://64.62.224.18/collectives-westend
+        - https://64.62.224.18/coretime-westend
+        - https://64.62.224.18/people-westend
+        - https://64.62.224.18/asset-hub-paseo
+      labels:
+        member: Luckyfriday
+
+    - targets:
+        - https://104.247.178.10/statemint
+        - https://104.247.178.10/asset-hub-polkadot
+        - https://104.247.178.10/bridgehub-polkadot
+        - https://104.247.178.10/collectives-polkadot
+        - https://104.247.178.10/statemine
+        - https://104.247.178.10/asset-hub-kusama
+        - https://104.247.178.10/bridgehub-kusama
+        - https://104.247.178.10/coretime-kusama
+        - https://104.247.178.10/encointer-kusama
+        - https://104.247.178.10/people-kusama
+        - https://104.247.178.10/westmint
+        - https://104.247.178.10/asset-hub-westend
+        - https://104.247.178.10/bridgehub-westend
+        - https://104.247.178.10/collectives-westend
+        - https://104.247.178.10/coretime-westend
+        - https://104.247.178.10/people-westend
+        - https://104.247.178.10/asset-hub-paseo
+      labels:
+        member: helikon
+
+    - targets:
+        - https://138.59.133.242/statemint
+        - https://138.59.133.242/asset-hub-polkadot
+        - https://138.59.133.242/bridgehub-polkadot
+        - https://138.59.133.242/collectives-polkadot
+        - https://138.59.133.242/statemine
+        - https://138.59.133.242/asset-hub-kusama
+        - https://138.59.133.242/bridgehub-kusama
+        - https://138.59.133.242/coretime-kusama
+        - https://138.59.133.242/encointer-kusama
+        - https://138.59.133.242/people-kusama
+        - https://138.59.133.242/westmint
+        - https://138.59.133.242/asset-hub-westend
+        - https://138.59.133.242/bridgehub-westend
+        - https://138.59.133.242/collectives-westend
+        - https://138.59.133.242/coretime-westend
+        - https://138.59.133.242/people-westend
+        - https://138.59.133.242/asset-hub-paseo
+      labels:
+        member: gatotech
+
+    - targets:
+        - https://102.69.242.203/statemint
+        - https://102.69.242.203/asset-hub-polkadot
+        - https://102.69.242.203/bridgehub-polkadot
+        - https://102.69.242.203/collectives-polkadot
+        - https://102.69.242.203/statemine
+        - https://102.69.242.203/asset-hub-kusama
+        - https://102.69.242.203/bridgehub-kusama
+        - https://102.69.242.203/coretime-kusama
+        - https://102.69.242.203/encointer-kusama
+        - https://102.69.242.203/people-kusama
+        - https://102.69.242.203/westmint
+        - https://102.69.242.203/asset-hub-westend
+        - https://102.69.242.203/bridgehub-westend
+        - https://102.69.242.203/collectives-westend
+        - https://102.69.242.203/coretime-westend
+        - https://102.69.242.203/people-westend
+        - https://102.69.242.203/asset-hub-paseo
+      labels:
+        member: Dwellir
+
+    - targets:
+        - https://27.131.160.109/statemint
+        - https://27.131.160.109/asset-hub-polkadot
+        - https://27.131.160.109/bridgehub-polkadot
+        - https://27.131.160.109/collectives-polkadot
+        - https://27.131.160.109/statemine
+        - https://27.131.160.109/asset-hub-kusama
+        - https://27.131.160.109/bridgehub-kusama
+        - https://27.131.160.109/coretime-kusama
+        - https://27.131.160.109/encointer-kusama
+        - https://27.131.160.109/people-kusama
+        - https://27.131.160.109/westmint
+        - https://27.131.160.109/asset-hub-westend
+        - https://27.131.160.109/bridgehub-westend
+        - https://27.131.160.109/collectives-westend
+        - https://27.131.160.109/coretime-westend
+        - https://27.131.160.109/people-westend
+        - https://27.131.160.109/asset-hub-paseo
+      labels:
+        member: rotko
+
+    - targets:
+        - https://103.240.197.6/statemint
+        - https://103.240.197.6/asset-hub-polkadot
+        - https://103.240.197.6/bridgehub-polkadot
+        - https://103.240.197.6/collectives-polkadot
+        - https://103.240.197.6/statemine
+        - https://103.240.197.6/asset-hub-kusama
+        - https://103.240.197.6/bridgehub-kusama
+        - https://103.240.197.6/coretime-kusama
+        - https://103.240.197.6/encointer-kusama
+        - https://103.240.197.6/people-kusama
+        - https://103.240.197.6/westmint
+        - https://103.240.197.6/asset-hub-westend
+        - https://103.240.197.6/bridgehub-westend
+        - https://103.240.197.6/collectives-westend
+        - https://103.240.197.6/coretime-westend
+        - https://103.240.197.6/people-westend
+        - https://103.240.197.6/asset-hub-paseo
+      labels:
+        member: RadiumBlock
+
+    - targets:
+        - https://202.37.148.99/statemint
+        - https://202.37.148.99/asset-hub-polkadot
+        - https://202.37.148.99/bridgehub-polkadot
+        - https://202.37.148.99/collectives-polkadot
+        - https://202.37.148.99/statemine
+        - https://202.37.148.99/asset-hub-kusama
+        - https://202.37.148.99/bridgehub-kusama
+        - https://202.37.148.99/coretime-kusama
+        - https://202.37.148.99/encointer-kusama
+        - https://202.37.148.99/people-kusama
+        - https://202.37.148.99/westmint
+        - https://202.37.148.99/asset-hub-westend
+        - https://202.37.148.99/bridgehub-westend
+        - https://202.37.148.99/collectives-westend
+        - https://202.37.148.99/coretime-westend
+        - https://202.37.148.99/people-westend
+        - https://202.37.148.99/asset-hub-paseo
+      labels:
+        member: polkadotters
+
+  rpcsub:
+    - targets:
+        - https://91.90.166.200/polkadot
+        - https://91.90.166.200/kusama
+        - https://91.90.166.200/westend
+        - https://91.90.166.200/paseo
+      labels:
+        member: Amforc
+
+    - targets:
+        - https://188.93.234.134/polkadot
+        - https://188.93.234.134/kusama
+        - https://188.93.234.134/westend
+        - https://188.93.234.134/paseo
+      labels:
+        member: turboflakes
+
+    - targets:
+        - https://195.144.22.130/polkadot
+        - https://195.144.22.130/kusama
+        - https://195.144.22.130/westend
+        - https://195.144.22.130/paseo
+      labels:
+        member: metaspan
+
+    - targets:
+        - https://192.96.202.175/polkadot
+        - https://192.96.202.175/kusama
+        - https://192.96.202.175/westend
+        - https://192.96.202.175/paseo
+      labels:
+        member: stakeplus
+
+    - targets:
+        - https://64.62.224.18/polkadot
+        - https://64.62.224.18/kusama
+        - https://64.62.224.18/westend
+        - https://64.62.224.18/paseo
+      labels:
+        member: Luckyfriday
+
+    - targets:
+        - https://104.247.178.10/polkadot
+        - https://104.247.178.10/kusama
+        - https://104.247.178.10/westend
+        - https://104.247.178.10/paseo
+      labels:
+        member: helikon
+
+    - targets:
+        - https://138.59.133.242/polkadot
+        - https://138.59.133.242/kusama
+        - https://138.59.133.242/westend
+        - https://138.59.133.242/paseo
+      labels:
+        member: gatotech
+
+    - targets:
+        - https://102.69.242.203/polkadot
+        - https://102.69.242.203/kusama
+        - https://102.69.242.203/westend
+        - https://102.69.242.203/paseo
+      labels:
+        member: Dwellir
+
+    - targets:
+        - https://27.131.160.109/polkadot
+        - https://27.131.160.109/kusama
+        - https://27.131.160.109/westend
+        - https://27.131.160.109/paseo
+      labels:
+        member: rotko
+
+    - targets:
+        - https://103.240.197.6/polkadot
+        - https://103.240.197.6/kusama
+        - https://103.240.197.6/westend
+        - https://103.240.197.6/paseo
+      labels:
+        member: RadiumBlock
+
+    - targets:
+        - https://202.37.148.99/polkadot
+        - https://202.37.148.99/kusama
+        - https://202.37.148.99/westend
+        - https://202.37.148.99/paseo
+      labels:
+        member: polkadotters
+
+  members:
+    - targets:
+        - ibp-metrics.amforc.com:9090
+      labels:
+        region: europe
+        member: Amforc
+    - targets:
+        - ibp-prometheus.turboflakes.io:9095
+      labels:
+        region: europe
+        member: turboflakes
+    - targets:
+        - ibp-metrics.metaspan.io
+      labels:
+        region: europe
+        member: metaspan
+    - targets:
+        - prometheus.stake.plus:9090
+      labels:
+        region: north-america
+        member: stakeplus
+    - targets:
+        - ibp-prometheus.luckyfriday.io
+      labels:
+        region: north-america
+        member: Luckyfriday
+    - targets:
+        - ibp-metrics.helikon.io:19300
+      labels:
+        region: middle-east
+        member: helikon
+    - targets:
+        - ibp-metrics.gatotech.network
+      labels:
+        region: south-america
+        member: gatotech
+    - targets:
+        - ibp-metrics-ng.dwellir.com
+      labels:
+        region: africa
+        member: Dwellir
+    - targets:
+        - ibp-metrics.rotko.net
+      labels:
+        region: asia
+        member: rotko
+    - targets:
+        - ibp-prometheus.radiumblock.co
+      labels:
+        region: asia
+        member: RadiumBlock
+    - targets:
+        - ibp-metrics.polkadotters.com
+      labels:
+        region: oceania
+        member: polkadotters

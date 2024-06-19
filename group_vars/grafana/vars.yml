@@ -18,8 +18,10 @@ grafana_datasources:
   - name: prometheus
     type: prometheus
     access: proxy
-    url: 'http://{{ prometheus_web_listen_address }}'
+    url: "http://{{ prometheus_web_listen_address }}"
     basicAuth: false
+
+grafana_alerting: {}
 
 grafana_auth:
   github:
@@ -34,4 +36,4 @@ grafana_auth:
     allow_sign_up: true
     auto_login: false
     allowed_organizations: ["ibp-network"]
-    role_attribute_path: 'Viewer'
+    role_attribute_path: "Viewer"

@@ -1,0 +1,78 @@
+http:
+  port: {{ matrix_rcv_port }}
+matrix:
+  homeserver-url: https://matrix.org
+  user-id: "{{ matrix_rcv_bot_user_id }}"
+  access-token: {{ matrix_rcv_bot_access_token }}
+  room-mapping:
+    test: "{{ matrix_rcv_room_test }}"
+    prod: "{{ matrix_rcv_room_prod }}"
+templating:
+  external-url-mapping:
+    "alertmanager:9093": https://alertmanager.example.com
+  computed-values:
+    - values:
+        color: white
+    - values:
+        color: orange
+      when-matching-labels:
+        severity: warning
+    - values:
+        color: red
+      when-matching-labels:
+        severity: critical
+    - values:
+        color: limegreen
+      when-matching-status: resolved
+    - values:
+        usertag: "@pmensik:matrix.org"
+      when-matching-labels:
+        member: polkadotters
+    - values:
+        usertag: "@turboflakes:matrix.org"
+      when-matching-labels:
+        member: turboflakes
+    - values:
+        usertag: "@metaspan:matrix.org"
+      when-matching-labels:
+        member: metaspan
+    - values:
+        usertag: "@tugytur:matrix.org"
+      when-matching-labels:
+        member: Amforc
+    - values:
+        usertag: "@helikon:matrix.org"
+      when-matching-labels:
+        member: helikon
+    - values:
+        usertag: "@radiumblock:matrix.org"
+      when-matching-labels:
+        member: RadiumBlock
+    - values:
+        usertag: "@stakeplus:matrix.org"
+      when-matching-labels:
+        member: stakeplus
+    - values:
+        usertag: "@hitchhooker:matrix.org"
+      when-matching-labels:
+        member: rotko
+    - values:
+        usertag: "@gatotech:matrix.org"
+      when-matching-labels:
+        member: gatotech
+    - values:
+        usertag: "@paradoxxx:matrix.org"
+      when-matching-labels:
+        member: Luckyfriday
+    - values:
+        usertag: "@jonathanudd:matrix.org"
+      when-matching-labels:
+        member: Dwellir
+  firing-template: {% raw %}
+    '<p>
+      ----------------------------------<br>
+      <strong><font color="{{ .ComputedValues.color }}">{{ .Alert.Status | ToUpper }} | {{ .Alert.Labels.severity | ToUpper }} | {{ .Alert.Labels.alertname }}</font></strong><br>
+      {{ .Alert.Annotations.message }}<br>
+      {{ .ComputedValues.usertag }}<br>
+      ----------------------------------<br>
+    </p>'{% endraw %}

@@ -1,0 +1,77 @@
+groups:
+- name: substrate.rules
+  rules:
+
+  ##############################################################################
+  # Block production
+  ##############################################################################
+
+  - alert: BlockProductionSlowLong
+    annotations:
+      message: 'Best block on instance {{ $labels.instance }} ({{ $labels.chain }}) increases by less than 1 per minute for more than 10 minutes.'
+    expr: increase(substrate_block_height{status="best"}[1m]) < 1
+    for: 10m
+    labels:
+      severity: critical
+
+  ##############################################################################
+  # Block finalization
+  ##############################################################################
+
+  - alert: BlockFinalizationSlowLong
+    expr: increase(substrate_block_height{status="finalized"}[1m]) < 1
+    for: 10m
+    labels:
+      severity: critical
+    annotations:
+      message: 'Finalized block on instance {{ $labels.instance }} ({{ $labels.chain }}) increases by less than 1 per minute for more than 10 minutes.'
+  - alert: BlockFinalizationLaggingBehind
+    expr: '(substrate_block_height{status="best"} - ignoring(status)
+    substrate_block_height{status="finalized"}) > 10'
+    for: 8m
+    labels:
+      severity: critical
+    annotations:
+      message: "Block finalization on instance {{ $labels.instance }} ({{ $labels.chain }}) is behind block production by {{ $value }} for more than 8 minutes."
+
+  ##############################################################################
+  # Networking
+  ##############################################################################
+
+  - alert: NumberOfPeersLowLong
+    expr: substrate_sub_libp2p_peers_count < 3
+    for: 15m
+    labels:
+      severity: critical
+    annotations:
+      message: 'Node {{ $labels.instance }} ({{ $labels.chain }}) has less than 3 peers for more than 15 minutes'
+  - alert: NoIncomingConnection
+    expr: increase(substrate_sub_libp2p_incoming_connections_total[20m]) == 0
+    labels:
+      severity: critical
+    annotations:
+      message: 'Node {{ $labels.instance }} ({{ $labels.chain }}) has not received any new incoming TCP connection in the past 20 minutes'
+
+  ##############################################################################
+  # System
+  ##############################################################################
+  
+  - alert: SubstrateServiceTooManyRestarts
+    annotations:
+      message: "({{ $labels.instance }}) ({{ $labels.chain }}) service restarted more than twice in the last 60 minutes. It might be crashlooping"
+    expr: changes(substrate_process_start_time_seconds[60m]) > 2
+    for: 0m
+    labels:
+      severity: warning
+
+  ##############################################################################
+  # RPC
+  ##############################################################################
+
+  - alert: RateLimitedRPC
+    annotations:
+      message: "({{ $labels.instance }}) ({{ $labels.chain }}) service has ratelimiting configure. Remove it"
+    expr: substrate_rpc_calls_time_count{is_rate_limited="true"} > 0
+    for: 0s
+    labels:
+      severity: warning

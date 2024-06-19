@@ -1,0 +1,27 @@
+alertmanager_version: 0.27.0
+alertmanager_port: 9093
+alertmanager_web_listen_address: "127.0.0.1:{{ alertmanager_port }}"
+
+matrix_rcv_version: 2024.6.5
+matrix_rcv_arch: linux_amd64
+matrix_rcv_git: https://github.com/metio/matrix-alertmanager-receiver/releases/download
+matrix_rcv_checksum: "{{ matrix_rcv_git }}/{{ matrix_rcv_version }}/matrix-alertmanager-receiver_{{ matrix_rcv_version }}_SHA256SUMS"
+matrix_rcv_bin: "{{ matrix_rcv_git }}/{{ matrix_rcv_version }}/matrix-alertmanager-receiver_{{ matrix_rcv_version }}_{{ matrix_rcv_arch }}.tar.gz"
+matrix_rcv_user: matrixrcv
+matrix_rcv_group: matrixrcv
+matrix_rcv_port: 8081
+
+alertmanager_receivers:
+  - name: ibp-monitoring
+    webhook_configs:
+      - url: "http://127.0.0.1:{{ matrix_rcv_port }}/alerts/prod"
+        send_resolved: true
+
+alertmanager_route:
+  receiver: ibp-monitoring
+  # group_by: ["member", "alertname", "chain"]
+  group_by: ["member", "alertname"]
+  group_wait: 2m
+  group_interval: 5m
+  repeat_interval: 24h
+  continue: false

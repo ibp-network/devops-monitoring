@@ -1,0 +1,42 @@
+groups:
+- name: rpc-recording-rules-daily
+  interval: 15m
+  rules:
+  - record: chain:substrate_rpc_calls_started:increase1h
+    expr: sum by (chain,region) (increase(substrate_rpc_calls_started[1h]))
+  - record: chain:substrate_rpc_calls_started:increase1d
+    expr: sum by (chain,region) (increase(substrate_rpc_calls_started[1d]))
+  - record: chain:substrate_rpc_active_sessions:sum
+    expr: sum by (chain,region) (substrate_rpc_sessions_opened - substrate_rpc_sessions_closed)
+  - record: method:substrate_rpc_calls_started:increase1d
+    expr: sum by (method,chain) (increase(substrate_rpc_calls_started[1d]))
+  - record: method:substrate_rpc_calls_time_count:increase1d
+    expr: sum by (method,chain) (increase(substrate_rpc_calls_time_count[1d]))
+  - record: method:substrate_rpc_calls_time_sum:increase1d
+    expr: sum by (method,chain) (increase(substrate_rpc_calls_time_sum[1d]))
+  - record: member:substrate_rpc_active_sessions:sum
+    expr: sum by (chain,member,region) (substrate_rpc_sessions_opened - substrate_rpc_sessions_closed)
+  - record: member:substrate_rpc_calls_started:increase1d
+    expr: sum by (method,chain,member,region) (increase(substrate_rpc_calls_started[1d]))
+  - record: member:substrate_rpc_calls_time_count:increase1d
+    expr: sum by (method,chain,member,region) (increase(substrate_rpc_calls_time_count[1d]))
+  - record: member:substrate_rpc_calls_time_sum:increase1d
+    expr: sum by (method,chain,member,region) (increase(substrate_rpc_calls_time_sum[1d]))
+
+- name: rpc-recording-rules-monthly
+  interval: 6h
+  rules:
+  - record: chain:substrate_rpc_calls_started:increase30d
+    expr: sum by (chain,region) (increase(chain:substrate_rpc_calls_started:increase1d[30d]))
+  - record: method:substrate_rpc_calls_started:increase30d
+    expr: sum by (method,chain) (increase(method:substrate_rpc_calls_started:increase1d[30d]))
+  - record: method:substrate_rpc_calls_time_count:increase30d
+    expr: sum by (method) (increase(method:substrate_rpc_calls_time_count:increase1d[30d]))
+  - record: method:substrate_rpc_calls_time_sum:increase30d
+    expr: sum by (method) (increase(method:substrate_rpc_calls_time_sum:increase1d[30d]))
+  - record: member:substrate_rpc_calls_started:increase30d
+    expr: sum by (method,chain,member,region) (increase(member:substrate_rpc_calls_started:increase1d[30d]))
+  - record: member:substrate_rpc_calls_time_count:increase30d
+    expr: sum by (method,chain,member,region) (increase(member:substrate_rpc_calls_time_count:increase1[30d]))
+  - record: member:substrate_rpc_calls_time_sum:increase30d
+    expr: sum by (method,chain,member,region) (increase(member:substrate_rpc_calls_time_sum:increase1d[30d]))

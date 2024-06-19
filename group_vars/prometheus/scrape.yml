@@ -1,0 +1,146 @@
+prometheus_scrape_configs:
+  - job_name: prometheus
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - "127.0.0.1:{{ prometheus_port }}"
+
+  - job_name: alertmanager
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - "{{ alertmanager_web_listen_address }}"
+
+  - job_name: "blackbox-http-rpc-ibp"
+    metrics_path: /probe
+    scrape_interval: 120s
+    params:
+      module: [http_rpc_ibp] # Look for a HTTP 200 response.
+    file_sd_configs:
+      - files:
+          - "{{ prometheus_config_dir }}/file_sd/rpcsub.yml"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115
+      - target_label: probe_url
+        replacement: rpc.ibp.network
+
+  - job_name: "blackbox-http-rpc-dotters"
+    metrics_path: /probe
+    scrape_interval: 120s
+    params:
+      module: [http_rpc_dotters] # Look for a HTTP 200 response.
+    file_sd_configs:
+      - files:
+          - "{{ prometheus_config_dir }}/file_sd/rpcsub.yml"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115
+      - target_label: probe_url
+        replacement: rpc.dotters.network
+
+  - job_name: "blackbox-http-sys-ibp"
+    metrics_path: /probe
+    scrape_interval: 120s
+    params:
+      module: [http_sys_ibp] # Look for a HTTP 200 response.
+    file_sd_configs:
+      - files:
+          - "{{ prometheus_config_dir }}/file_sd/syssub.yml"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115
+      - target_label: probe_url
+        replacement: sys.ibp.network
+
+  - job_name: "blackbox-http-sys-dotters"
+    metrics_path: /probe
+    scrape_interval: 120s
+    params:
+      module: [http_sys_dotters] # Look for a HTTP 200 response.
+    file_sd_configs:
+      - files:
+          - "{{ prometheus_config_dir }}/file_sd/syssub.yml"
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 127.0.0.1:9115
+      - target_label: probe_url
+        replacement: sys.dotters.network
+
+  - job_name: "blackbox_exporter"
+    static_configs:
+      - targets: ["127.0.0.1:9115"]
+
+  - job_name: federation
+    metrics_path: /federate
+    honor_labels: true
+    scheme: https
+    params:
+      match[]:
+        - '{__name__=~"substrate_rpc_.*",node_type="rpc"}'
+        - '{__name__="substrate_build_info",node_type="rpc"}'
+        - '{__name__="substrate_block_height",node_type="rpc"}'
+        - '{__name__="substrate_node_roles",node_type="rpc"}'
+        - '{__name__="substrate_process_start_time_seconds",node_type="rpc"}'
+        - '{__name__="substrate_sub_libp2p_peers_count",node_type="rpc"}'
+        - '{__name__="substrate_sub_libp2p_incoming_connections_total",node_type="rpc"}'
+    file_sd_configs:
+      - files:
+          - "{{ prometheus_config_dir }}/file_sd/members.yml"
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: '^.*(dwellir\.com)$'
+        target_label: __metrics_path__
+        replacement: "/{{ dwellir_api_key }}/federate"
+    metric_relabel_configs:
+      - action: replace
+        source_labels: [chain]
+        target_label: chain
+        regex: westend2
+        replacement: westend
+      - action: replace
+        source_labels: [chain]
+        target_label: chain
+        regex: ksmcc3
+        replacement: kusama
+      - action: replace
+        source_labels: [chain]
+        target_label: chain
+        regex: "collectives_polkadot"
+        replacement: "collectives-polkadot"
+      - action: replace
+        source_labels: [chain]
+        target_label: chain
+        regex: "collectives_westend"
+        replacement: "collectives-westend"
+      - action: replace
+        source_labels: [chain]
+        target_label: chain
+        regex: "encointer-kusama"
+        replacement: "encointer"
+      - action: drop
+        source_labels: [chain]
+        regex: "hashed"
+      - action: drop
+        source_labels: [chain]
+        regex: "dancebox"
+      - action: replace
+        source_labels: [version]
+        target_label: version
+        regex: '^([0-9]+\.[0-9]+\.[0-9]+)-.*$'

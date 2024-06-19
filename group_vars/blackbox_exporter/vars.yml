@@ -1,0 +1,58 @@
+blackbox_exporter_version: 0.25.0
+blackbox_exporter_web_listen_address: "127.0.0.1:9115"
+
+blackbox_exporter_configuration_modules:
+  http_2xx:
+    prober: http
+    timeout: 5s
+    http:
+      method: GET
+      valid_status_codes: []
+
+  http_rpc_ibp:
+    prober: http
+    timeout: 5s
+    http:
+      method: POST
+      valid_status_codes: []
+      preferred_ip_protocol: "ip4"
+      headers:
+        Host: "rpc.ibp.network"
+        Content-Type: "application/json"
+      body: '{"jsonrpc":"2.0","method":"system_health","params":[],"id":1}'
+
+  http_rpc_dotters:
+    prober: http
+    timeout: 5s
+    http:
+      method: POST
+      valid_status_codes: []
+      preferred_ip_protocol: "ip4"
+      headers:
+        Host: "rpc.dotters.network"
+        Content-Type: "application/json"
+      body: '{"jsonrpc":"2.0","method":"system_health","params":[],"id":1}'
+
+  http_sys_ibp:
+    prober: http
+    timeout: 5s
+    http:
+      method: POST
+      valid_status_codes: []
+      preferred_ip_protocol: "ip4"
+      headers:
+        Host: "sys.ibp.network"
+        Content-Type: "application/json"
+      body: '{"jsonrpc":"2.0","method":"system_health","params":[],"id":1}'
+
+  http_sys_dotters:
+    prober: http
+    timeout: 5s
+    http:
+      method: POST
+      valid_status_codes: []
+      preferred_ip_protocol: "ip4"
+      headers:
+        Host: "sys.dotters.network"
+        Content-Type: "application/json"
+      body: '{"jsonrpc":"2.0","method":"system_health","params":[],"id":1}'
