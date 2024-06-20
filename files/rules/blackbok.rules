@@ -9,13 +9,21 @@ groups:
       annotations:
         message: Blackbox probe failed (instance {{ $labels.instance }} with {{ $labels.probe_url }})
 
+    - alert: BlackboxProbeHttpTooManyRequests
+      expr: probe_http_status_code == 429
+      for: 0m
+      labels:
+        severity: critical
+      annotations:
+        message: Blackbox probe HTTP ({{ $value }}) too many requests for (instance {{ $labels.instance }} with {{ $labels.probe_url }}). Increase proxy settings
+
     - alert: BlackboxProbeHttpFailure
       expr: probe_http_status_code <= 199 OR probe_http_status_code >= 400
       for: 5m
       labels:
         severity: critical
       annotations:
-        message: Blackbox probe HTTP failure (instance {{ $labels.instance }} with {{ $labels.probe_url }})
+        message: Blackbox probe HTTP ({{ $value }}) failure (instance {{ $labels.instance }} with {{ $labels.probe_url }})
 
     - alert: BlackboxConfigurationReloadFailure
       expr: blackbox_exporter_config_last_reload_successful != 1

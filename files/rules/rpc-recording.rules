@@ -26,12 +26,16 @@ groups:
   rules:
   - record: chain:substrate_rpc_calls_started:increase4h
     expr: sum by (chain,region) (increase(substrate_rpc_calls_started[4h]))
+  - record: chain:substrate_rpc_active_sessions:avg4h
+    expr: avg_over_time(chain:substrate_rpc_active_sessions:sum15m[4h])
   - record: method:substrate_rpc_calls_started:increase4h
     expr: sum by (method,chain) (increase(substrate_rpc_calls_started[4h]))
   - record: method:substrate_rpc_calls_time_count:increase4h
     expr: sum by (method,chain) (increase(substrate_rpc_calls_time_count[4h]))
   - record: method:substrate_rpc_calls_time_sum:increase4h
     expr: sum by (method,chain) (increase(substrate_rpc_calls_time_sum[4h]))
+  - record: member:substrate_rpc_active_sessions:avg4h
+    expr: avg_over_time(member:substrate_rpc_active_sessions:sum15m[4h])
   - record: member:substrate_rpc_calls_started:increase4h
     expr: sum by (method,chain,member,region) (increase(substrate_rpc_calls_started[4h]))
   - record: member:substrate_rpc_calls_time_count:increase4h
@@ -44,12 +48,16 @@ groups:
   rules:
   - record: chain:substrate_rpc_calls_started:increase1d
     expr: sum by (chain,region) (increase(substrate_rpc_calls_started[1d]))
+  - record: chain:substrate_rpc_active_sessions:avg24h
+    expr: avg_over_time(chain:substrate_rpc_active_sessions:avg24h[24h])
   - record: method:substrate_rpc_calls_started:increase1d
     expr: sum by (method,chain) (increase(substrate_rpc_calls_started[1d]))
   - record: method:substrate_rpc_calls_time_count:increase1d
     expr: sum by (method,chain) (increase(substrate_rpc_calls_time_count[1d]))
   - record: method:substrate_rpc_calls_time_sum:increase1d
     expr: sum by (method,chain) (increase(substrate_rpc_calls_time_sum[1d]))
+  - record: member:substrate_rpc_active_sessions:avg24h
+    expr: avg_over_time(member:substrate_rpc_active_sessions:avg24h[24h])
   - record: member:substrate_rpc_calls_started:increase1d
     expr: sum by (method,chain,member,region) (increase(substrate_rpc_calls_started[1d]))
   - record: member:substrate_rpc_calls_time_count:increase1d
