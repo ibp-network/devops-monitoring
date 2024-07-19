@@ -46,11 +46,11 @@ groups:
     annotations:
       message: 'Node {{ $labels.instance }} ({{ $labels.chain }}) has less than 3 peers for more than 15 minutes'
   - alert: NoIncomingConnection
-    expr: increase(substrate_sub_libp2p_incoming_connections_total[20m]) == 0
+    expr: increase(substrate_sub_libp2p_incoming_connections_total[30m]) == 0
     labels:
       severity: critical
     annotations:
-      message: 'Node {{ $labels.instance }} ({{ $labels.chain }}) has not received any new incoming TCP connection in the past 20 minutes'
+      message: 'Node {{ $labels.instance }} ({{ $labels.chain }}) has not received any new incoming TCP connection in the past 30 minutes'
 
   ##############################################################################
   # System
@@ -58,8 +58,8 @@ groups:
   
   - alert: SubstrateServiceTooManyRestarts
     annotations:
-      message: "({{ $labels.instance }}) ({{ $labels.chain }}) service restarted more than twice in the last 60 minutes. It might be crashlooping"
-    expr: changes(substrate_process_start_time_seconds[60m]) > 2
+      message: "({{ $labels.instance }}) ({{ $labels.chain }}) service restarted more than four times in the last 60 minutes. It might be crashlooping"
+    expr: changes(substrate_process_start_time_seconds[60m]) > 4
     for: 0m
     labels:
       severity: warning
