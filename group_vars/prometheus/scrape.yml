@@ -93,13 +93,13 @@ prometheus_scrape_configs:
     scheme: https
     params:
       match[]:
-        - '{__name__=~"substrate_rpc_.*",node_type="rpc"}'
-        - '{__name__="substrate_build_info",node_type="rpc"}'
-        - '{__name__="substrate_block_height",node_type="rpc"}'
-        - '{__name__="substrate_node_roles",node_type="rpc"}'
-        - '{__name__="substrate_process_start_time_seconds",node_type="rpc"}'
-        - '{__name__="substrate_sub_libp2p_peers_count",node_type="rpc"}'
-        - '{__name__="substrate_sub_libp2p_incoming_connections_total",node_type="rpc"}'
+        - '{__name__=~".*substrate_rpc_.*",node_type="rpc"}'
+        - '{__name__=~".*substrate_build_info",node_type="rpc"}'
+        - '{__name__=~".*substrate_block_height",node_type="rpc"}'
+        - '{__name__=~".*substrate_node_roles",node_type="rpc"}'
+        - '{__name__=~".*substrate_process_start_time_seconds",node_type="rpc"}'
+        - '{__name__=~".*substrate_sub_libp2p_peers_count",node_type="rpc"}'
+        - '{__name__=~".*substrate_sub_libp2p_incoming_connections_total",node_type="rpc"}'
     file_sd_configs:
       - files:
           - "{{ prometheus_config_dir }}/file_sd/members.yml"
@@ -164,3 +164,7 @@ prometheus_scrape_configs:
         source_labels: [version]
         target_label: version
         regex: '^([0-9]+\.[0-9]+\.[0-9]+)-.*$'
+      - source_labels: [__name__]
+        regex: "^moonbeam_(.*)$"
+        target_label: __name__
+        replacement: "$1"
