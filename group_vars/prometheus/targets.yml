@@ -169,23 +169,23 @@ prometheus_targets:
         member: Dwellir
 
     - targets:
-        - https://27.131.160.109/statemint
-        - https://27.131.160.109/asset-hub-polkadot
-        - https://27.131.160.109/bridgehub-polkadot
-        - https://27.131.160.109/collectives-polkadot
-        - https://27.131.160.109/statemine
-        - https://27.131.160.109/asset-hub-kusama
-        - https://27.131.160.109/bridgehub-kusama
-        - https://27.131.160.109/coretime-kusama
-        - https://27.131.160.109/encointer-kusama
-        - https://27.131.160.109/people-kusama
-        - https://27.131.160.109/westmint
-        - https://27.131.160.109/asset-hub-westend
-        - https://27.131.160.109/bridgehub-westend
-        - https://27.131.160.109/collectives-westend
-        - https://27.131.160.109/coretime-westend
-        - https://27.131.160.109/people-westend
-        - https://27.131.160.109/asset-hub-paseo
+        - https://160.22.181.181/statemint
+        - https://160.22.181.181/asset-hub-polkadot
+        - https://160.22.181.181/bridgehub-polkadot
+        - https://160.22.181.181/collectives-polkadot
+        - https://160.22.181.181/statemine
+        - https://160.22.181.181/asset-hub-kusama
+        - https://160.22.181.181/bridgehub-kusama
+        - https://160.22.181.181/coretime-kusama
+        - https://160.22.181.181/encointer-kusama
+        - https://160.22.181.181/people-kusama
+        - https://160.22.181.181/westmint
+        - https://160.22.181.181/asset-hub-westend
+        - https://160.22.181.181/bridgehub-westend
+        - https://160.22.181.181/collectives-westend
+        - https://160.22.181.181/coretime-westend
+        - https://160.22.181.181/people-westend
+        - https://160.22.181.181/asset-hub-paseo
       labels:
         member: rotko
 
@@ -297,10 +297,10 @@ prometheus_targets:
         member: Dwellir
 
     - targets:
-        - https://27.131.160.109/polkadot
-        - https://27.131.160.109/kusama
-        - https://27.131.160.109/westend
-        - https://27.131.160.109/paseo
+        - https://160.22.181.181/polkadot
+        - https://160.22.181.181/kusama
+        - https://160.22.181.181/westend
+        - https://160.22.181.181/paseo
       labels:
         member: rotko
 

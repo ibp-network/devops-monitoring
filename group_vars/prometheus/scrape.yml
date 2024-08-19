@@ -93,13 +93,13 @@ prometheus_scrape_configs:
     scheme: https
     params:
       match[]:
-        - '{__name__=~".*substrate_rpc_.*",node_type="rpc"}'
-        - '{__name__=~".*substrate_build_info",node_type="rpc"}'
-        - '{__name__=~".*substrate_block_height",node_type="rpc"}'
-        - '{__name__=~".*substrate_node_roles",node_type="rpc"}'
-        - '{__name__=~".*substrate_process_start_time_seconds",node_type="rpc"}'
-        - '{__name__=~".*substrate_sub_libp2p_peers_count",node_type="rpc"}'
-        - '{__name__=~".*substrate_sub_libp2p_incoming_connections_total",node_type="rpc"}'
+        - '{__name__=~".*substrate_rpc_.*"}'
+        - '{__name__=~".*substrate_build_info"}'
+        - '{__name__=~".*substrate_block_height"}'
+        - '{__name__=~".*substrate_node_roles"}'
+        - '{__name__=~".*substrate_process_start_time_seconds"}'
+        - '{__name__=~".*substrate_sub_libp2p_peers_count"}'
+        - '{__name__=~".*substrate_sub_libp2p_incoming_connections_total"}'
     file_sd_configs:
       - files:
           - "{{ prometheus_config_dir }}/file_sd/members.yml"
