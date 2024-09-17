@@ -152,6 +152,11 @@ prometheus_scrape_configs:
       - action: replace
         source_labels: [chain]
         target_label: chain
+        regex: "bifrost"
+        replacement: "bifrost-polkadot"
+      - action: replace
+        source_labels: [chain]
+        target_label: chain
         regex: "unq"
         replacement: "unique"
       - action: replace

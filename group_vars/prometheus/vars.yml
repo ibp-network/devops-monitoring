@@ -1,4 +1,4 @@
-prometheus_version: 2.53.0
+prometheus_version: 2.53.2
 
 prometheus_port: 9090
 prometheus_web_listen_address: "127.0.0.1:{{ prometheus_port }}"
@@ -17,3 +17,6 @@ prometheus_storage_retention: "365d"
 
 prometheus_alert_rules_files:
   - files/rules/*.rules
+
+prometheus_config_flags_extra:
+  web.enable-admin-api:
