@@ -127,23 +127,23 @@ prometheus_targets:
         member: helikon
 
     - targets:
-        - https://138.59.133.242/statemint
-        - https://138.59.133.242/asset-hub-polkadot
-        - https://138.59.133.242/bridgehub-polkadot
-        - https://138.59.133.242/collectives-polkadot
-        - https://138.59.133.242/statemine
-        - https://138.59.133.242/asset-hub-kusama
-        - https://138.59.133.242/bridgehub-kusama
-        - https://138.59.133.242/coretime-kusama
-        - https://138.59.133.242/encointer-kusama
-        - https://138.59.133.242/people-kusama
-        - https://138.59.133.242/westmint
-        - https://138.59.133.242/asset-hub-westend
-        - https://138.59.133.242/bridgehub-westend
-        - https://138.59.133.242/collectives-westend
-        - https://138.59.133.242/coretime-westend
-        - https://138.59.133.242/people-westend
-        - https://138.59.133.242/asset-hub-paseo
+        - https://181.174.168.72/statemint
+        - https://181.174.168.72/asset-hub-polkadot
+        - https://181.174.168.72/bridgehub-polkadot
+        - https://181.174.168.72/collectives-polkadot
+        - https://181.174.168.72/statemine
+        - https://181.174.168.72/asset-hub-kusama
+        - https://181.174.168.72/bridgehub-kusama
+        - https://181.174.168.72/coretime-kusama
+        - https://181.174.168.72/encointer-kusama
+        - https://181.174.168.72/people-kusama
+        - https://181.174.168.72/westmint
+        - https://181.174.168.72/asset-hub-westend
+        - https://181.174.168.72/bridgehub-westend
+        - https://181.174.168.72/collectives-westend
+        - https://181.174.168.72/coretime-westend
+        - https://181.174.168.72/people-westend
+        - https://181.174.168.72/asset-hub-paseo
       labels:
         member: gatotech
 
@@ -281,10 +281,10 @@ prometheus_targets:
         member: helikon
 
     - targets:
-        - https://138.59.133.242/polkadot
-        - https://138.59.133.242/kusama
-        - https://138.59.133.242/westend
-        - https://138.59.133.242/paseo
+        - https://181.174.168.72/polkadot
+        - https://181.174.168.72/kusama
+        - https://181.174.168.72/westend
+        - https://181.174.168.72/paseo
       labels:
         member: gatotech
 
