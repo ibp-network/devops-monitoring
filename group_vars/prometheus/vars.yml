@@ -20,3 +20,13 @@ prometheus_alert_rules_files:
 
 prometheus_config_flags_extra:
   web.enable-admin-api:
+
+monthly_csv_chain:
+  - ajuna
+  - bifrost-polkadot
+  - hydration
+  - kilt
+  - moonbeam
+  - nexus
+  - polimec
+  - unique

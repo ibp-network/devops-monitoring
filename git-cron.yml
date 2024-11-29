@@ -1,0 +1,37 @@
+---
+- name: Update once a month request csv
+  hosts: prometheus
+  become: true
+  tasks:
+    - name: Create Group
+      ansible.builtin.group:
+        name: "reqcsv"
+        state: present
+        system: true
+
+    - name: Create User
+      ansible.builtin.user:
+        name: "reqcsv"
+        group: "reqcsv"
+        create_home: true
+        system: true
+        state: present
+        shell: "/bin/bash"
+        # shell: "/usr/sbin/nologin"
+
+    - name: Copy systemd service
+      ansible.builtin.template:
+        src: files/templates/query_monthly.sh.j2
+        dest: /home/reqcsv/query_monthly.sh
+        owner: reqcsv
+        group: reqcsv
+        mode: '0644'
+
+    - name: Create cronjob
+      become: true
+      ansible.builtin.cron:
+        name: requests-csv-update
+        cron_file: "reqcsv"
+        user: reqcsv
+        job: "/usr/bin/bash /home/reqcsv/query_monthly.sh >> /home/reqcsv/logs.txt 2>&1"
+        special_time: monthly

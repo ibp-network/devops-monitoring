@@ -1,0 +1,38 @@
+#!/bin/bash
+
+GIT_REPO="/home/reqcsv/ChildBounties"
+PROMETHEUS_SERVER="http://{{ prometheus_web_listen_address }}"
+QUERY='avg_over_time(sum by (chain) (sum_over_time(chain:substrate_rpc_calls_started:increase4h{chain=~"({{ monthly_csv_chain | join('|') }})"}[1d]))[30d:1d])'
+OUTPUT_FILE="$GIT_REPO/requests/parachains.csv"
+
+TIMESTAMP=$(date -d "yesterday" '+%Y.%m')
+
+
+cd "$GIT_REPO" || { echo "Repository not found at $GIT_REPO"; exit 1; }
+
+RESPONSE=$(curl -sG "${PROMETHEUS_SERVER}/api/v1/query" --data-urlencode "query=${QUERY}")
+
+if [ ! -f "$OUTPUT_FILE" ]; then
+  echo "timestamp,chain,value" > "$OUTPUT_FILE"  # Write CSV header
+fi
+
+# With quotes
+#echo "$RESPONSE" | jq -r '
+#  .data.result[] |
+#  [.metric.chain, (.value[1] | tonumber | floor)] |
+#  @csv' | while IFS= read -r LINE; do
+#  echo "\"${TIMESTAMP}\",$LINE" >> "$OUTPUT_FILE"
+#done
+
+echo "$RESPONSE" | jq -r --arg timestamp "$TIMESTAMP" '
+  .data.result[] |
+  [$timestamp, .metric.chain, (.value[1] | tonumber | floor)] |
+  @csv' | sed 's/"//g' >> "$OUTPUT_FILE"
+
+
+# Optional: Log the operation
+echo "Query executed at ${TIMESTAMP}, output written to ${OUTPUT_FILE}"
+
+git add "$OUTPUT_FILE"
+git commit -m "monthly req update"
+git push origin main
