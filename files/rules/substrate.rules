@@ -46,11 +46,11 @@ groups:
     annotations:
       message: 'Node {{ $labels.instance }} ({{ $labels.chain }}) has less than 3 peers for more than 15 minutes'
   - alert: NoIncomingConnection
-    expr: increase(substrate_sub_libp2p_incoming_connections_total[120m]) == 0
+    expr: increase(substrate_sub_libp2p_incoming_connections_total[360m]) == 0
     labels:
       severity: critical
     annotations:
-      message: 'Node {{ $labels.instance }} ({{ $labels.chain }}) has not received any new incoming TCP connection in the past 120 minutes'
+      message: 'Node {{ $labels.instance }} ({{ $labels.chain }}) has not received any new incoming TCP connection in the past 6 hours'
 
   ##############################################################################
   # System
