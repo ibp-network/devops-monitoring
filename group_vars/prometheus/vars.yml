@@ -1,4 +1,4 @@
-prometheus_version: 2.53.2
+prometheus_version: 2.53.3
 
 prometheus_port: 9090
 prometheus_web_listen_address: "127.0.0.1:{{ prometheus_port }}"
@@ -30,3 +30,5 @@ monthly_csv_chain:
   - nexus
   - polimec
   - unique
+  - invarch
+  - acala
