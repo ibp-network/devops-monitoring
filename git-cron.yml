@@ -34,4 +34,4 @@
         cron_file: "reqcsv"
         user: reqcsv
         job: "/usr/bin/bash /home/reqcsv/query_monthly.sh >> /home/reqcsv/logs.txt 2>&1"
-        special_time: monthly
+        special_time: daily
