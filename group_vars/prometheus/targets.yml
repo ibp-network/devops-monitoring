@@ -61,7 +61,7 @@ prometheus_targets:
         - https://195.144.22.130/people-westend
         - https://195.144.22.130/asset-hub-paseo
       labels:
-        member: metaspan
+        member: interweb
 
     - targets:
         - https://192.96.202.175/statemint
@@ -254,7 +254,7 @@ prometheus_targets:
         - https://195.144.22.130/westend
         - https://195.144.22.130/paseo
       labels:
-        member: metaspan
+        member: interweb
 
     - targets:
         - https://192.96.202.175/polkadot
@@ -332,10 +332,10 @@ prometheus_targets:
         region: europe
         member: turboflakes
     - targets:
-        - ibp-metrics.metaspan.io
+        - ibp-metrics.interweb-it.com
       labels:
         region: europe
-        member: metaspan
+        member: interweb
     - targets:
         - prometheus.stake.plus:9090
       labels:
