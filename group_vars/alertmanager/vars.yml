@@ -1,8 +1,8 @@
-alertmanager_version: 0.27.0
+alertmanager_version: 0.28.1
 alertmanager_port: 9093
 alertmanager_web_listen_address: "127.0.0.1:{{ alertmanager_port }}"
 
-matrix_rcv_version: 2024.6.5
+matrix_rcv_version: 2025.4.23
 matrix_rcv_arch: linux_amd64
 matrix_rcv_git: https://github.com/metio/matrix-alertmanager-receiver/releases/download
 matrix_rcv_checksum: "{{ matrix_rcv_git }}/{{ matrix_rcv_version }}/matrix-alertmanager-receiver_{{ matrix_rcv_version }}_SHA256SUMS"
